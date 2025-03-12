@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://j2k8j6cbrd1e"]
+
+[ext_resource type="Script" path="res://Tank/base_area_2d.gd" id="1_em0qo"]
+[ext_resource type="Texture2D" uid="uid://dud1j7e1fkkvm" path="res://Resource/bc_0.png" id="2_8d16p"]
+[ext_resource type="PackedScene" uid="uid://c8fokg0yxgmhc" path="res://Tank/explotion.tscn" id="3_mn4v4"]
+[ext_resource type="AudioStream" uid="uid://ccycom7pai5sy" path="res://sound/fexplosion.ogg" id="4_w0vfr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_imjsr"]
+size = Vector2(62, 62)
+
+[node name="Base" type="Area2D"]
+script = ExtResource("1_em0qo")
+Expansion = ExtResource("3_mn4v4")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("2_8d16p")
+hframes = 2
+region_enabled = true
+region_rect = Rect2(0, 256, 32, 16)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_imjsr")
+
+[node name="AudioExpansion" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_w0vfr")
+volume_db = 10.0
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

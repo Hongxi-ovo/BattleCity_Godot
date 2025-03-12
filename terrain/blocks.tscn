@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://dcg7233m7kmg8"]
+
+[ext_resource type="Script" path="res://terrain/blocks.gd" id="1_vjtvd"]
+[ext_resource type="Texture2D" uid="uid://tjeeqk4vog" path="res://Resource/bc_1.png" id="2_3vugu"]
+
+[node name="Blocks" type="Node2D"]
+position = Vector2(224, 224)
+script = ExtResource("1_vjtvd")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(16, 16)
+scale = Vector2(4, 4)
+texture = ExtResource("2_3vugu")
+region_enabled = true
+region_rect = Rect2(16, 0, 8, 8)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(-16, 16)
+scale = Vector2(4, 4)
+texture = ExtResource("2_3vugu")
+region_enabled = true
+region_rect = Rect2(32, 0, 8, 8)
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(16, -16)
+scale = Vector2(4, 4)
+texture = ExtResource("2_3vugu")
+region_enabled = true
+region_rect = Rect2(16, 0, 8, 8)
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(-16, -16)
+scale = Vector2(4, 4)
+texture = ExtResource("2_3vugu")
+region_enabled = true
+region_rect = Rect2(16, 0, 8, 8)

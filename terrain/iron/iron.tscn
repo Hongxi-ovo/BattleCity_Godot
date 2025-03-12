@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctsb6kweqmreg"]
+
+[ext_resource type="Script" path="res://terrain/iron/iron.gd" id="1_jygn1"]
+[ext_resource type="Texture2D" uid="uid://tjeeqk4vog" path="res://Resource/bc_1.png" id="1_vbmb0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w30nq"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_npqoh"]
+size = Vector2(32, 32)
+
+[node name="iron" type="Area2D"]
+script = ExtResource("1_jygn1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(4, 4)
+texture = ExtResource("1_vbmb0")
+region_enabled = true
+region_rect = Rect2(16, 0, 8, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_w30nq")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_npqoh")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

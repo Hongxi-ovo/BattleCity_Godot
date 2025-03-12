@@ -1,0 +1,244 @@
+[gd_scene load_steps=11 format=3 uid="uid://cru0m7ji4l6f"]
+
+[ext_resource type="Texture2D" uid="uid://dud1j7e1fkkvm" path="res://Resource/bc_0.png" id="1_aoadw"]
+[ext_resource type="Script" path="res://Title/title.gd" id="1_o62in"]
+[ext_resource type="Texture2D" uid="uid://c7hfg6q47vf25" path="res://Title/logo.png" id="1_ycgkm"]
+[ext_resource type="FontFile" uid="uid://bot5a5dcxci6n" path="res://fonts/PressStart2P-Regular.ttf" id="3_fvo4k"]
+
+[sub_resource type="Animation" id="Animation_fhjnc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(96, 0, 32, 16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_75ods"]
+resource_name = "move"
+length = 0.13334
+loop_mode = 1
+step = 0.0666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(96, 0, 32, 16)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.0666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_53fvt"]
+_data = {
+"RESET": SubResource("Animation_fhjnc"),
+"move": SubResource("Animation_75ods")
+}
+
+[sub_resource type="Animation" id="Animation_l5xcw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_swbwj"]
+resource_name = "blacking"
+length = 0.0666683
+step = 0.0166667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ucx16"]
+_data = {
+"RESET": SubResource("Animation_l5xcw"),
+"blacking": SubResource("Animation_swbwj")
+}
+
+[node name="Title" type="Node2D"]
+script = ExtResource("1_o62in")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(288, 528)
+scale = Vector2(4, 4)
+texture = ExtResource("1_aoadw")
+hframes = 2
+region_enabled = true
+region_rect = Rect2(96, 0, 32, 16)
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(0, 896)
+metadata/_edit_group_ = true
+
+[node name="Title-I-" type="RichTextLabel" parent="Node2D"]
+offset_left = 64.0
+offset_top = 64.0
+offset_right = 136.0
+offset_bottom = 96.0
+theme_override_fonts/normal_font = ExtResource("3_fvo4k")
+theme_override_font_sizes/normal_font_size = 32
+text = "I-"
+
+[node name="Title-HI-" type="RichTextLabel" parent="Node2D"]
+offset_left = 356.0
+offset_top = 64.0
+offset_right = 452.0
+offset_bottom = 96.0
+theme_override_fonts/normal_font = ExtResource("3_fvo4k")
+theme_override_font_sizes/normal_font_size = 32
+text = "HI-"
+
+[node name="Title-I-Num" type="RichTextLabel" parent="Node2D"]
+offset_left = 128.0
+offset_top = 64.0
+offset_right = 324.0
+offset_bottom = 96.0
+theme_override_fonts/normal_font = ExtResource("3_fvo4k")
+theme_override_font_sizes/normal_font_size = 32
+text = "00"
+text_direction = 2
+
+[node name="Title-HI-Num2" type="RichTextLabel" parent="Node2D"]
+offset_left = 448.0
+offset_top = 64.0
+offset_right = 644.0
+offset_bottom = 96.0
+theme_override_fonts/normal_font = ExtResource("3_fvo4k")
+theme_override_font_sizes/normal_font_size = 32
+text = "20000"
+text_direction = 2
+
+[node name="1Player" type="RichTextLabel" parent="Node2D"]
+offset_left = 352.0
+offset_top = 512.0
+offset_right = 672.0
+offset_bottom = 544.0
+theme_override_fonts/normal_font = ExtResource("3_fvo4k")
+theme_override_font_sizes/normal_font_size = 32
+text = "1 PLAYER"
+
+[node name="2Players" type="RichTextLabel" parent="Node2D"]
+offset_left = 352.0
+offset_top = 576.0
+offset_right = 672.0
+offset_bottom = 608.0
+theme_override_fonts/normal_font = ExtResource("3_fvo4k")
+theme_override_font_sizes/normal_font_size = 32
+text = "2 PLAYERS
+"
+
+[node name="CONSTRUCTION" type="RichTextLabel" parent="Node2D"]
+offset_left = 352.0
+offset_top = 640.0
+offset_right = 792.0
+offset_bottom = 672.0
+theme_override_fonts/normal_font = ExtResource("3_fvo4k")
+theme_override_font_sizes/normal_font_size = 32
+text = "CONSTRUCTION"
+
+[node name="©" type="RichTextLabel" parent="Node2D"]
+offset_left = 352.0
+offset_top = 736.0
+offset_right = 792.0
+offset_bottom = 768.0
+theme_override_fonts/normal_font = ExtResource("3_fvo4k")
+theme_override_font_sizes/normal_font_size = 32
+text = "By HongXi"
+
+[node name="Logo" type="Sprite2D" parent="Node2D"]
+position = Vector2(512, 320)
+texture = ExtResource("1_ycgkm")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_53fvt")
+}
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1024.0
+offset_bottom = 896.0
+color = Color(0, 0, 0, 0)
+
+[node name="BlackAniamtion" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ucx16")
+}
+
+[connection signal="animation_finished" from="BlackAniamtion" to="." method="_on_black_aniamtion_animation_finished"]

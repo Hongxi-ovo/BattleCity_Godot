@@ -1,0 +1,43 @@
+[gd_scene load_steps=9 format=3 uid="uid://bgax3k172xl"]
+
+[ext_resource type="Script" path="res://Tank/tank_main.gd" id="1_ebbw6"]
+[ext_resource type="PackedScene" uid="uid://culixhqbfyowp" path="res://Tank/tank.tscn" id="2_hgyg3"]
+[ext_resource type="PackedScene" uid="uid://c8fokg0yxgmhc" path="res://Tank/explotion.tscn" id="3_8nmc7"]
+[ext_resource type="PackedScene" uid="uid://cslt7phyqmt33" path="res://Tank/bullet.tscn" id="4_vhfk1"]
+[ext_resource type="PackedScene" uid="uid://bu3m31xmoo4r2" path="res://Tank/born.tscn" id="5_hsmyi"]
+[ext_resource type="AudioStream" uid="uid://bpgyg65v2x78o" path="res://sound/moving.ogg" id="6_e8iys"]
+[ext_resource type="AudioStream" uid="uid://ifgk2d4v1exh" path="res://sound/nmoving.ogg" id="7_0dy4q"]
+[ext_resource type="AudioStream" uid="uid://ccycom7pai5sy" path="res://sound/fexplosion.ogg" id="8_y52ry"]
+
+[node name="TankMain" type="Node2D"]
+script = ExtResource("1_ebbw6")
+tank = ExtResource("2_hgyg3")
+explotion = ExtResource("3_8nmc7")
+bullet = ExtResource("4_vhfk1")
+born = ExtResource("5_hsmyi")
+Player = null
+MaxButtet = null
+
+[node name="AudioTankMove1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_e8iys")
+volume_db = -10.0
+
+[node name="AudioTankMove2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_e8iys")
+volume_db = -10.0
+
+[node name="AudioTankMove3" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_0dy4q")
+volume_db = -10.0
+
+[node name="Audio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_y52ry")
+
+[node name="1PTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="2PTimer" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="timeout" from="1PTimer" to="." method="_on_1p_timer_timeout"]
+[connection signal="timeout" from="2PTimer" to="." method="_on_2p_timer_timeout"]

@@ -1,0 +1,42 @@
+[gd_scene load_steps=11 format=3 uid="uid://cqau4tw7jbyoc"]
+
+[ext_resource type="Script" path="res://MobTank/mob_tank_main.gd" id="1_uton2"]
+[ext_resource type="PackedScene" uid="uid://dj1d8jjmv2523" path="res://MobTank/Mobtank.tscn" id="2_xnvhj"]
+[ext_resource type="PackedScene" uid="uid://c8fokg0yxgmhc" path="res://Tank/explotion.tscn" id="3_i4ejw"]
+[ext_resource type="PackedScene" uid="uid://cvfjb4dvrfpxp" path="res://MobTank/mob_bullet.tscn" id="4_581jb"]
+[ext_resource type="PackedScene" uid="uid://bu3m31xmoo4r2" path="res://Tank/born.tscn" id="5_tq1e1"]
+[ext_resource type="AudioStream" uid="uid://cnrumo3dyg5lr" path="res://sound/eexplosion.ogg" id="6_a15wu"]
+[ext_resource type="PackedScene" uid="uid://ov7wx0yqvvpu" path="res://MobTank/integral.tscn" id="6_h2qnq"]
+[ext_resource type="PackedScene" uid="uid://q4rynsmk37ak" path="res://MobTank/prop.tscn" id="7_pmyc5"]
+[ext_resource type="AudioStream" uid="uid://uoansr35rmhv" path="res://sound/bonus.ogg" id="9_xta40"]
+[ext_resource type="AudioStream" uid="uid://dsi3nwlt4prp" path="res://sound/life.ogg" id="10_4hkif"]
+
+[node name="MobTankMain" type="Node2D"]
+script = ExtResource("1_uton2")
+mobTank = ExtResource("2_xnvhj")
+explotion = ExtResource("3_i4ejw")
+mobBullet = ExtResource("4_581jb")
+born = ExtResource("5_tq1e1")
+ScoreScene = ExtResource("6_h2qnq")
+PropScene = ExtResource("7_pmyc5")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+autostart = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_a15wu")
+
+[node name="eatProp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_xta40")
+
+[node name="1UPProp" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_4hkif")
+
+[node name="propPause" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="finished" from="AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
+[connection signal="timeout" from="propPause" to="." method="_on_prop_pause_timeout"]

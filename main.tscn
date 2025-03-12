@@ -1,0 +1,25 @@
+[gd_scene load_steps=7 format=3 uid="uid://d3t68d804udcq"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_3dw1d"]
+[ext_resource type="PackedScene" uid="uid://cru0m7ji4l6f" path="res://Title/title.tscn" id="1_5to4x"]
+[ext_resource type="PackedScene" uid="uid://caemkjtipmro4" path="res://scene_change.tscn" id="3_pxm1y"]
+[ext_resource type="PackedScene" uid="uid://b68q4kexlh87q" path="res://Map/map_save.tscn" id="3_sotkt"]
+[ext_resource type="PackedScene" uid="uid://cn17c0albqdex" path="res://Map/map.tscn" id="4_hxg16"]
+[ext_resource type="PackedScene" uid="uid://d0wiya4dycq0e" path="res://score_count.tscn" id="6_rol3k"]
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_3dw1d")
+Title = ExtResource("1_5to4x")
+mapSave = ExtResource("3_sotkt")
+mapMain = ExtResource("4_hxg16")
+SceneChange = ExtResource("3_pxm1y")
+Score = ExtResource("6_rol3k")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(512, 448)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -999
+offset_right = 1024.0
+offset_bottom = 896.0
+color = Color(0, 0, 0, 1)

@@ -1,0 +1,576 @@
+[gd_scene load_steps=6 format=3 uid="uid://d0wiya4dycq0e"]
+
+[ext_resource type="FontFile" uid="uid://bot5a5dcxci6n" path="res://fonts/PressStart2P-Regular.ttf" id="1_la1ki"]
+[ext_resource type="Script" path="res://score_count.gd" id="1_x6p22"]
+[ext_resource type="Texture2D" uid="uid://dud1j7e1fkkvm" path="res://Resource/bc_0.png" id="3_usd06"]
+[ext_resource type="AudioStream" uid="uid://b5et0f8qlq0b0" path="res://sound/statistics.ogg" id="4_3k41q"]
+[ext_resource type="AudioStream" uid="uid://b1bqyqn3tdfby" path="res://sound/award.ogg" id="5_xm750"]
+
+[node name="ScoreCount" type="Node2D"]
+z_index = 100
+script = ExtResource("1_x6p22")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1024.0
+offset_bottom = 896.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+z_index = 1
+offset_left = 384.0
+offset_top = 672.0
+offset_right = 640.0
+offset_bottom = 680.0
+
+[node name="NodeScore" type="Node2D" parent="."]
+position = Vector2(256, 96)
+metadata/_edit_group_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="NodeScore"]
+modulate = Color(1, 0, 0, 1)
+offset_top = -32.0
+offset_right = 256.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "HI-SCORE"
+
+[node name="STAGE" type="RichTextLabel" parent="NodeScore"]
+offset_left = 128.0
+offset_top = 32.0
+offset_right = 384.0
+offset_bottom = 64.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "STAGE"
+
+[node name="STAGENUM" type="RichTextLabel" parent="NodeScore"]
+offset_left = 288.0
+offset_top = 32.0
+offset_right = 416.0
+offset_bottom = 64.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+text_direction = 2
+
+[node name="score" type="RichTextLabel" parent="NodeScore"]
+modulate = Color(1, 0.470588, 0, 1)
+offset_left = 288.0
+offset_top = -32.0
+offset_right = 544.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "20000"
+text_direction = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="NodeScore"]
+position = Vector2(256, 256)
+scale = Vector2(4, 4)
+texture = ExtResource("3_usd06")
+vframes = 4
+region_enabled = true
+region_rect = Rect2(128, 64, 16, 64)
+
+[node name="Sprite2D2" type="Sprite2D" parent="NodeScore"]
+position = Vector2(256, 352)
+scale = Vector2(4, 4)
+texture = ExtResource("3_usd06")
+vframes = 4
+frame = 1
+region_enabled = true
+region_rect = Rect2(128, 64, 16, 64)
+
+[node name="Sprite2D3" type="Sprite2D" parent="NodeScore"]
+position = Vector2(256, 448)
+scale = Vector2(4, 4)
+texture = ExtResource("3_usd06")
+vframes = 4
+frame = 2
+region_enabled = true
+region_rect = Rect2(128, 64, 16, 64)
+
+[node name="Sprite2D4" type="Sprite2D" parent="NodeScore"]
+position = Vector2(256, 544)
+scale = Vector2(4, 4)
+texture = ExtResource("3_usd06")
+vframes = 4
+frame = 3
+region_enabled = true
+region_rect = Rect2(128, 64, 16, 64)
+
+[node name="TOTAL" type="RichTextLabel" parent="NodeScore"]
+offset_left = -128.0
+offset_top = 592.0
+offset_right = 96.0
+offset_bottom = 624.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "TOTAL"
+text_direction = 2
+
+[node name="Node1P" type="Node2D" parent="."]
+position = Vector2(96, 200)
+metadata/_edit_group_ = true
+
+[node name="1p" type="RichTextLabel" parent="Node1P"]
+modulate = Color(1, 0, 0, 1)
+offset_right = 256.0
+offset_bottom = 32.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "I-PLAYER"
+
+[node name="1pNUM" type="RichTextLabel" parent="Node1P"]
+modulate = Color(1, 0.470588, 0, 1)
+offset_top = 64.0
+offset_right = 256.0
+offset_bottom = 96.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "2000"
+text_direction = 2
+
+[node name="1pPTS" type="RichTextLabel" parent="Node1P"]
+offset_left = 128.0
+offset_top = 136.0
+offset_right = 256.0
+offset_bottom = 168.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "PTS"
+text_direction = 2
+
+[node name="1pPTS2" type="RichTextLabel" parent="Node1P"]
+offset_left = 128.0
+offset_top = 232.0
+offset_right = 256.0
+offset_bottom = 264.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "PTS"
+text_direction = 2
+
+[node name="1pPTS3" type="RichTextLabel" parent="Node1P"]
+offset_left = 128.0
+offset_top = 328.0
+offset_right = 256.0
+offset_bottom = 360.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "PTS"
+text_direction = 2
+
+[node name="1pPTS4" type="RichTextLabel" parent="Node1P"]
+offset_left = 128.0
+offset_top = 424.0
+offset_right = 256.0
+offset_bottom = 456.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "PTS"
+text_direction = 2
+
+[node name="1pScore1" type="RichTextLabel" parent="Node1P"]
+visible = false
+offset_top = 136.0
+offset_right = 128.0
+offset_bottom = 168.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "0"
+text_direction = 2
+
+[node name="1pScore2" type="RichTextLabel" parent="Node1P"]
+visible = false
+offset_top = 232.0
+offset_right = 128.0
+offset_bottom = 264.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "0"
+text_direction = 2
+
+[node name="1pScore3" type="RichTextLabel" parent="Node1P"]
+visible = false
+offset_top = 328.0
+offset_right = 128.0
+offset_bottom = 360.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "0"
+text_direction = 2
+
+[node name="1pScore4" type="RichTextLabel" parent="Node1P"]
+visible = false
+offset_top = 424.0
+offset_right = 128.0
+offset_bottom = 456.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "0"
+text_direction = 2
+
+[node name="1pArrow1" type="RichTextLabel" parent="Node1P"]
+offset_left = 352.0
+offset_top = 136.0
+offset_right = 384.0
+offset_bottom = 168.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "←"
+text_direction = 2
+
+[node name="1pArrow2" type="RichTextLabel" parent="Node1P"]
+offset_left = 352.0
+offset_top = 232.0
+offset_right = 384.0
+offset_bottom = 264.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "←"
+text_direction = 2
+
+[node name="1pArrow3" type="RichTextLabel" parent="Node1P"]
+offset_left = 352.0
+offset_top = 328.0
+offset_right = 384.0
+offset_bottom = 360.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "←"
+text_direction = 2
+
+[node name="1pArrow4" type="RichTextLabel" parent="Node1P"]
+offset_left = 352.0
+offset_top = 424.0
+offset_right = 384.0
+offset_bottom = 456.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "←"
+text_direction = 2
+
+[node name="1pKillTank1" type="RichTextLabel" parent="Node1P"]
+visible = false
+offset_left = 288.0
+offset_top = 136.0
+offset_right = 352.0
+offset_bottom = 168.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "0"
+autowrap_mode = 0
+text_direction = 2
+
+[node name="1pKillTank2" type="RichTextLabel" parent="Node1P"]
+visible = false
+offset_left = 288.0
+offset_top = 232.0
+offset_right = 352.0
+offset_bottom = 264.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "0"
+autowrap_mode = 0
+text_direction = 2
+
+[node name="1pKillTank3" type="RichTextLabel" parent="Node1P"]
+visible = false
+offset_left = 288.0
+offset_top = 328.0
+offset_right = 352.0
+offset_bottom = 360.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "0"
+autowrap_mode = 0
+text_direction = 2
+
+[node name="1pKillTank4" type="RichTextLabel" parent="Node1P"]
+visible = false
+offset_left = 288.0
+offset_top = 424.0
+offset_right = 352.0
+offset_bottom = 456.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "0"
+autowrap_mode = 0
+text_direction = 2
+
+[node name="1pAllKillTank" type="RichTextLabel" parent="Node1P"]
+visible = false
+offset_left = 288.0
+offset_top = 488.0
+offset_right = 352.0
+offset_bottom = 520.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "0"
+text_direction = 2
+
+[node name="1pBONUS" type="RichTextLabel" parent="Node1P"]
+visible = false
+modulate = Color(1, 0, 0, 1)
+offset_left = 32.0
+offset_top = 536.0
+offset_right = 288.0
+offset_bottom = 568.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "BONUS!"
+autowrap_mode = 0
+
+[node name="1pAddPTS" type="RichTextLabel" parent="Node1P"]
+visible = false
+offset_left = 32.0
+offset_top = 576.0
+offset_right = 288.0
+offset_bottom = 608.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "1000 PTS"
+
+[node name="Node2P" type="Node2D" parent="."]
+visible = false
+position = Vector2(640, 200)
+metadata/_edit_group_ = true
+
+[node name="2p" type="RichTextLabel" parent="Node2P"]
+modulate = Color(1, 0, 0, 1)
+offset_right = 288.0
+offset_bottom = 32.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "II-PLAYER"
+
+[node name="2pNUM" type="RichTextLabel" parent="Node2P"]
+modulate = Color(1, 0.470588, 0, 1)
+offset_top = 64.0
+offset_right = 288.0
+offset_bottom = 96.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "2000"
+text_direction = 2
+
+[node name="2pPTS" type="RichTextLabel" parent="Node2P"]
+offset_left = 160.0
+offset_top = 136.0
+offset_right = 288.0
+offset_bottom = 168.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "PTS"
+text_direction = 2
+
+[node name="2pPTS2" type="RichTextLabel" parent="Node2P"]
+offset_left = 160.0
+offset_top = 232.0
+offset_right = 288.0
+offset_bottom = 264.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "PTS"
+text_direction = 2
+
+[node name="2pPTS3" type="RichTextLabel" parent="Node2P"]
+offset_left = 160.0
+offset_top = 328.0
+offset_right = 288.0
+offset_bottom = 360.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "PTS"
+text_direction = 2
+
+[node name="2pPTS4" type="RichTextLabel" parent="Node2P"]
+offset_left = 160.0
+offset_top = 424.0
+offset_right = 288.0
+offset_bottom = 456.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "PTS"
+text_direction = 2
+
+[node name="2pScore1" type="RichTextLabel" parent="Node2P"]
+visible = false
+offset_left = 32.0
+offset_top = 136.0
+offset_right = 160.0
+offset_bottom = 168.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "0"
+text_direction = 2
+
+[node name="2pScore2" type="RichTextLabel" parent="Node2P"]
+visible = false
+offset_left = 32.0
+offset_top = 232.0
+offset_right = 160.0
+offset_bottom = 264.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "0"
+text_direction = 2
+
+[node name="2pScore3" type="RichTextLabel" parent="Node2P"]
+visible = false
+offset_left = 32.0
+offset_top = 328.0
+offset_right = 160.0
+offset_bottom = 360.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "0"
+text_direction = 2
+
+[node name="2pScore4" type="RichTextLabel" parent="Node2P"]
+visible = false
+offset_left = 32.0
+offset_top = 424.0
+offset_right = 160.0
+offset_bottom = 456.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "0"
+text_direction = 2
+
+[node name="2pArrow1" type="RichTextLabel" parent="Node2P"]
+offset_left = -96.0
+offset_top = 136.0
+offset_right = -64.0
+offset_bottom = 168.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "→"
+text_direction = 2
+
+[node name="2pArrow2" type="RichTextLabel" parent="Node2P"]
+offset_left = -96.0
+offset_top = 232.0
+offset_right = -64.0
+offset_bottom = 264.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "→"
+text_direction = 2
+
+[node name="2pArrow3" type="RichTextLabel" parent="Node2P"]
+offset_left = -96.0
+offset_top = 328.0
+offset_right = -64.0
+offset_bottom = 360.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "→"
+text_direction = 2
+
+[node name="2pArrow4" type="RichTextLabel" parent="Node2P"]
+offset_left = -96.0
+offset_top = 424.0
+offset_right = -64.0
+offset_bottom = 456.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "→"
+text_direction = 2
+
+[node name="2pKillTank1" type="RichTextLabel" parent="Node2P"]
+visible = false
+offset_left = -64.0
+offset_top = 136.0
+offset_bottom = 168.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "0"
+text_direction = 2
+
+[node name="2pKillTank2" type="RichTextLabel" parent="Node2P"]
+visible = false
+offset_left = -64.0
+offset_top = 232.0
+offset_bottom = 264.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "0"
+text_direction = 2
+
+[node name="2pKillTank3" type="RichTextLabel" parent="Node2P"]
+visible = false
+offset_left = -64.0
+offset_top = 328.0
+offset_bottom = 360.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "0"
+text_direction = 2
+
+[node name="2pKillTank4" type="RichTextLabel" parent="Node2P"]
+visible = false
+offset_left = -64.0
+offset_top = 424.0
+offset_bottom = 456.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "0"
+text_direction = 2
+
+[node name="2pAllKillTank" type="RichTextLabel" parent="Node2P"]
+visible = false
+offset_left = -64.0
+offset_top = 488.0
+offset_bottom = 520.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "0"
+text_direction = 2
+
+[node name="2pBONUS" type="RichTextLabel" parent="Node2P"]
+visible = false
+modulate = Color(1, 0, 0, 1)
+offset_left = 64.0
+offset_top = 536.0
+offset_right = 320.0
+offset_bottom = 568.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "BONUS!"
+autowrap_mode = 0
+
+[node name="2pAddPTS" type="RichTextLabel" parent="Node2P"]
+visible = false
+offset_left = 64.0
+offset_top = 576.0
+offset_right = 320.0
+offset_bottom = 608.0
+theme_override_fonts/normal_font = ExtResource("1_la1ki")
+theme_override_font_sizes/normal_font_size = 32
+text = "1000 PTS"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="NextTime" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_3k41q")
+
+[node name="rewardTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="AudioAward" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_xm750")
+
+[node name="Timer2" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="NextTime" to="." method="_on_next_time_timeout"]
+[connection signal="timeout" from="rewardTimer" to="." method="_on_reward_timer_timeout"]
+[connection signal="timeout" from="Timer2" to="." method="_on_timer_2_timeout"]

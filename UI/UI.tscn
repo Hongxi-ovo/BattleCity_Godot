@@ -1,0 +1,277 @@
+[gd_scene load_steps=8 format=3 uid="uid://voggpv86u6dm"]
+
+[ext_resource type="Script" path="res://UI/UI.gd" id="1_1it2a"]
+[ext_resource type="Texture2D" uid="uid://0havvunhmy14" path="res://Resource/enemy.png" id="1_c7cnj"]
+[ext_resource type="Texture2D" uid="uid://vwejfxcg3xb5" path="res://Resource/flag.png" id="3_55upo"]
+[ext_resource type="FontFile" uid="uid://bot5a5dcxci6n" path="res://fonts/PressStart2P-Regular.ttf" id="4_5veif"]
+[ext_resource type="Texture2D" uid="uid://bordtsgdr3r56" path="res://Resource/lives.png" id="5_52pw4"]
+[ext_resource type="Script" path="res://UI/pause.gd" id="6_5gfdn"]
+[ext_resource type="AudioStream" uid="uid://c8a0y8ig4ihoh" path="res://sound/pause.ogg" id="7_4roaw"]
+
+[node name="UI" type="Node2D"]
+script = ExtResource("1_1it2a")
+
+[node name="Node2D" type="Node2D" parent="."]
+position = Vector2(928, 64)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D"]
+position = Vector2(16, 16)
+scale = Vector2(2, 2)
+texture = ExtResource("1_c7cnj")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Node2D"]
+position = Vector2(48, 16)
+scale = Vector2(2, 2)
+texture = ExtResource("1_c7cnj")
+
+[node name="Sprite2D3" type="Sprite2D" parent="Node2D"]
+position = Vector2(16, 48)
+scale = Vector2(2, 2)
+texture = ExtResource("1_c7cnj")
+
+[node name="Sprite2D4" type="Sprite2D" parent="Node2D"]
+position = Vector2(48, 48)
+scale = Vector2(2, 2)
+texture = ExtResource("1_c7cnj")
+
+[node name="Sprite2D5" type="Sprite2D" parent="Node2D"]
+position = Vector2(16, 80)
+scale = Vector2(2, 2)
+texture = ExtResource("1_c7cnj")
+
+[node name="Sprite2D6" type="Sprite2D" parent="Node2D"]
+position = Vector2(48, 80)
+scale = Vector2(2, 2)
+texture = ExtResource("1_c7cnj")
+
+[node name="Sprite2D7" type="Sprite2D" parent="Node2D"]
+position = Vector2(16, 112)
+scale = Vector2(2, 2)
+texture = ExtResource("1_c7cnj")
+
+[node name="Sprite2D8" type="Sprite2D" parent="Node2D"]
+position = Vector2(48, 112)
+scale = Vector2(2, 2)
+texture = ExtResource("1_c7cnj")
+
+[node name="Sprite2D9" type="Sprite2D" parent="Node2D"]
+position = Vector2(16, 144)
+scale = Vector2(2, 2)
+texture = ExtResource("1_c7cnj")
+
+[node name="Sprite2D10" type="Sprite2D" parent="Node2D"]
+position = Vector2(48, 144)
+scale = Vector2(2, 2)
+texture = ExtResource("1_c7cnj")
+
+[node name="Sprite2D11" type="Sprite2D" parent="Node2D"]
+position = Vector2(16, 176)
+scale = Vector2(2, 2)
+texture = ExtResource("1_c7cnj")
+
+[node name="Sprite2D12" type="Sprite2D" parent="Node2D"]
+position = Vector2(48, 176)
+scale = Vector2(2, 2)
+texture = ExtResource("1_c7cnj")
+
+[node name="Sprite2D13" type="Sprite2D" parent="Node2D"]
+position = Vector2(16, 208)
+scale = Vector2(2, 2)
+texture = ExtResource("1_c7cnj")
+
+[node name="Sprite2D14" type="Sprite2D" parent="Node2D"]
+position = Vector2(48, 208)
+scale = Vector2(2, 2)
+texture = ExtResource("1_c7cnj")
+
+[node name="Sprite2D15" type="Sprite2D" parent="Node2D"]
+position = Vector2(16, 240)
+scale = Vector2(2, 2)
+texture = ExtResource("1_c7cnj")
+
+[node name="Sprite2D16" type="Sprite2D" parent="Node2D"]
+position = Vector2(48, 240)
+scale = Vector2(2, 2)
+texture = ExtResource("1_c7cnj")
+
+[node name="Sprite2D17" type="Sprite2D" parent="Node2D"]
+position = Vector2(16, 272)
+scale = Vector2(2, 2)
+texture = ExtResource("1_c7cnj")
+
+[node name="Sprite2D18" type="Sprite2D" parent="Node2D"]
+position = Vector2(48, 272)
+scale = Vector2(2, 2)
+texture = ExtResource("1_c7cnj")
+
+[node name="Sprite2D19" type="Sprite2D" parent="Node2D"]
+position = Vector2(16, 304)
+scale = Vector2(2, 2)
+texture = ExtResource("1_c7cnj")
+
+[node name="Sprite2D20" type="Sprite2D" parent="Node2D"]
+position = Vector2(48, 304)
+scale = Vector2(2, 2)
+texture = ExtResource("1_c7cnj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(944, 736)
+scale = Vector2(2, 2)
+texture = ExtResource("3_55upo")
+
+[node name="Stage" type="RichTextLabel" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = 944.0
+offset_top = 784.0
+offset_right = 1008.0
+offset_bottom = 816.0
+theme_override_fonts/normal_font = ExtResource("4_5veif")
+theme_override_font_sizes/normal_font_size = 32
+text = "10"
+text_direction = 2
+
+[node name="1p" type="Node2D" parent="."]
+
+[node name="Lives" type="Sprite2D" parent="1p"]
+position = Vector2(944, 496)
+scale = Vector2(2, 2)
+texture = ExtResource("5_52pw4")
+
+[node name="1P" type="RichTextLabel" parent="1p"]
+modulate = Color(0, 0, 0, 1)
+offset_left = 928.0
+offset_top = 448.0
+offset_right = 960.0
+offset_bottom = 480.0
+theme_override_fonts/normal_font = ExtResource("4_5veif")
+theme_override_font_sizes/normal_font_size = 32
+text = "1"
+
+[node name="P" type="RichTextLabel" parent="1p"]
+modulate = Color(0, 0, 0, 1)
+offset_left = 960.0
+offset_top = 448.0
+offset_right = 992.0
+offset_bottom = 480.0
+theme_override_fonts/normal_font = ExtResource("4_5veif")
+theme_override_font_sizes/normal_font_size = 32
+text = "P"
+
+[node name="life" type="RichTextLabel" parent="1p"]
+modulate = Color(0, 0, 0, 1)
+offset_left = 960.0
+offset_top = 480.0
+offset_right = 1024.0
+offset_bottom = 512.0
+theme_override_fonts/normal_font = ExtResource("4_5veif")
+theme_override_font_sizes/normal_font_size = 32
+text = "0"
+text_direction = 1
+
+[node name="2p" type="Node2D" parent="."]
+position = Vector2(0, 128)
+
+[node name="Lives" type="Sprite2D" parent="2p"]
+position = Vector2(944, 496)
+scale = Vector2(2, 2)
+texture = ExtResource("5_52pw4")
+
+[node name="2P" type="RichTextLabel" parent="2p"]
+modulate = Color(0, 0, 0, 1)
+offset_left = 928.0
+offset_top = 448.0
+offset_right = 960.0
+offset_bottom = 480.0
+theme_override_fonts/normal_font = ExtResource("4_5veif")
+theme_override_font_sizes/normal_font_size = 32
+text = "2"
+
+[node name="P" type="RichTextLabel" parent="2p"]
+modulate = Color(0, 0, 0, 1)
+offset_left = 960.0
+offset_top = 448.0
+offset_right = 992.0
+offset_bottom = 480.0
+theme_override_fonts/normal_font = ExtResource("4_5veif")
+theme_override_font_sizes/normal_font_size = 32
+text = "P"
+
+[node name="life" type="RichTextLabel" parent="2p"]
+modulate = Color(0, 0, 0, 1)
+offset_left = 960.0
+offset_top = 480.0
+offset_right = 1024.0
+offset_bottom = 512.0
+theme_override_fonts/normal_font = ExtResource("4_5veif")
+theme_override_font_sizes/normal_font_size = 32
+text = "0"
+
+[node name="Pause" type="Node2D" parent="."]
+process_mode = 2
+script = ExtResource("6_5gfdn")
+
+[node name="PAUSE" type="RichTextLabel" parent="Pause"]
+visible = false
+modulate = Color(1, 0, 0, 1)
+z_index = 99
+offset_left = 400.0
+offset_top = 416.0
+offset_right = 560.0
+offset_bottom = 448.0
+theme_override_fonts/normal_font = ExtResource("4_5veif")
+theme_override_font_sizes/normal_font_size = 32
+text = "PAUSE"
+text_direction = 2
+
+[node name="AudioPause" type="AudioStreamPlayer" parent="Pause"]
+stream = ExtResource("7_4roaw")
+
+[node name="TimerPause" type="Timer" parent="Pause"]
+wait_time = 0.5
+autostart = true
+
+[node name="Timer" type="Timer" parent="Pause"]
+wait_time = 0.2
+one_shot = true
+
+[node name="GameOver" type="Node2D" parent="."]
+
+[node name="1P" type="RichTextLabel" parent="GameOver"]
+modulate = Color(1, 0, 0, 1)
+z_index = 1
+z_as_relative = false
+offset_left = -128.0
+offset_top = 768.0
+offset_bottom = 832.0
+theme_override_fonts/normal_font = ExtResource("4_5veif")
+theme_override_font_sizes/normal_font_size = 32
+text = "GAMEOVER"
+
+[node name="2P" type="RichTextLabel" parent="GameOver"]
+modulate = Color(1, 0, 0, 1)
+z_index = 1
+z_as_relative = false
+offset_left = 896.0
+offset_top = 768.0
+offset_right = 1024.0
+offset_bottom = 832.0
+theme_override_fonts/normal_font = ExtResource("4_5veif")
+theme_override_font_sizes/normal_font_size = 32
+text = "GAMEOVER"
+
+[node name="Over" type="RichTextLabel" parent="GameOver"]
+modulate = Color(1, 0, 0, 1)
+z_index = 1
+z_as_relative = false
+offset_left = 360.0
+offset_top = 896.0
+offset_right = 616.0
+offset_bottom = 1024.0
+theme_override_fonts/normal_font = ExtResource("4_5veif")
+theme_override_font_sizes/normal_font_size = 64
+text = "GAMEOVER"
+
+[connection signal="finished" from="Pause/AudioPause" to="Pause" method="_on_audio_pause_finished"]
+[connection signal="timeout" from="Pause/TimerPause" to="Pause" method="_on_timer_pause_timeout"]
+[connection signal="timeout" from="Pause/Timer" to="Pause" method="_on_timer_timeout"]

@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=3 uid="uid://lsrlof84hhbx"]
+
+[ext_resource type="Script" path="res://terrain/ice/ice.gd" id="1_7nk3l"]
+[ext_resource type="Texture2D" uid="uid://tjeeqk4vog" path="res://Resource/bc_1.png" id="2_cpv5p"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k2te8"]
+size = Vector2(64, 64)
+
+[node name="ice" type="Area2D"]
+z_index = -1
+collision_layer = 1024
+collision_mask = 0
+script = ExtResource("1_7nk3l")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-16, -16)
+scale = Vector2(4, 4)
+texture = ExtResource("2_cpv5p")
+region_enabled = true
+region_rect = Rect2(32, 0, 8, 8)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(16, -16)
+scale = Vector2(4, 4)
+texture = ExtResource("2_cpv5p")
+region_enabled = true
+region_rect = Rect2(32, 0, 8, 8)
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+position = Vector2(-16, 16)
+scale = Vector2(4, 4)
+texture = ExtResource("2_cpv5p")
+region_enabled = true
+region_rect = Rect2(32, 0, 8, 8)
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+position = Vector2(16, 16)
+scale = Vector2(4, 4)
+texture = ExtResource("2_cpv5p")
+region_enabled = true
+region_rect = Rect2(32, 0, 8, 8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_k2te8")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

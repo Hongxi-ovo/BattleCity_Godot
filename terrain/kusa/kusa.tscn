@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://bpf8ca6ajpu34"]
+
+[ext_resource type="Texture2D" uid="uid://tjeeqk4vog" path="res://Resource/bc_1.png" id="1_jf8t4"]
+
+[node name="kusa" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(-16, -16)
+scale = Vector2(4, 4)
+texture = ExtResource("1_jf8t4")
+region_enabled = true
+region_rect = Rect2(24, 0, 8, 8)
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(16, -16)
+scale = Vector2(4, 4)
+texture = ExtResource("1_jf8t4")
+region_enabled = true
+region_rect = Rect2(24, 0, 8, 8)
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(-16, 16)
+scale = Vector2(4, 4)
+texture = ExtResource("1_jf8t4")
+region_enabled = true
+region_rect = Rect2(24, 0, 8, 8)
+
+[node name="Sprite2D4" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(16, 16)
+scale = Vector2(4, 4)
+texture = ExtResource("1_jf8t4")
+region_enabled = true
+region_rect = Rect2(24, 0, 8, 8)

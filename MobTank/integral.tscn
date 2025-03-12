@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://ov7wx0yqvvpu"]
+
+[ext_resource type="Script" path="res://MobTank/integral.gd" id="1_acusj"]
+[ext_resource type="FontFile" uid="uid://b6ls3kpe17hb1" path="res://fonts/SF像素化(SFPixelate)_爱给网_aigei_com.ttf" id="2_33l7o"]
+
+[node name="integral" type="Node2D"]
+z_index = 1
+script = ExtResource("1_acusj")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+z_index = -1
+offset_left = -40.0
+offset_top = -10.0
+offset_right = 27.0
+offset_bottom = 17.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+theme_override_fonts/normal_font = ExtResource("2_33l7o")
+theme_override_font_sizes/normal_font_size = 30
+text = "500"
+fit_content = true
+text_direction = 2
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
