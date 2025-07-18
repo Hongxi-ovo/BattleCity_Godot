@@ -102,8 +102,6 @@ func addScore():
 		ThisTank += 1
 		$NextTime.start()
 
-
-
 func _on_reward_timer_timeout() -> void:
 	if is_two_player_mode:
 		if int($"Node1P/1pAllKillTank".text) > int($"Node2P/2pAllKillTank".text):
@@ -126,7 +124,7 @@ func _on_reward_timer_timeout() -> void:
 			get_parent().playingScore.x += 1000
 			get_parent().playingScore.y += 1000
 		$AudioAward.play()
-		$Timer2.start()
+	$Timer2.start()
 
 
 func _on_timer_2_timeout() -> void:

@@ -3,13 +3,13 @@
 [ext_resource type="Texture2D" uid="uid://dud1j7e1fkkvm" path="res://Resource/bc_0.png" id="1_c08a4"]
 [ext_resource type="Texture2D" uid="uid://tjeeqk4vog" path="res://Resource/bc_1.png" id="2_0exv0"]
 [ext_resource type="PackedScene" uid="uid://78snji2qai06" path="res://terrain/brick/bricks.tscn" id="3_gij51"]
-[ext_resource type="Script" path="res://Map/map.gd" id="4_o6g8i"]
+[ext_resource type="Script" uid="uid://dyx5t1qy6yapa" path="res://Map/map.gd" id="4_o6g8i"]
 [ext_resource type="PackedScene" uid="uid://cdebyc8ihbt70" path="res://terrain/iron/irons.tscn" id="5_j6en4"]
 [ext_resource type="PackedScene" uid="uid://bgax3k172xl" path="res://Tank/tank_main.tscn" id="6_0hp4m"]
 [ext_resource type="PackedScene" uid="uid://lsrlof84hhbx" path="res://terrain/ice/ice.tscn" id="7_bl0mm"]
 [ext_resource type="PackedScene" uid="uid://31pr3qrlrj5w" path="res://terrain/water/water.tscn" id="8_n1ca5"]
 [ext_resource type="PackedScene" uid="uid://bpf8ca6ajpu34" path="res://terrain/kusa/kusa.tscn" id="9_s7qgb"]
-[ext_resource type="Script" path="res://Map/wall_area_2d.gd" id="10_3qkid"]
+[ext_resource type="Script" uid="uid://cxhvua5b7w7ou" path="res://Map/wall_area_2d.gd" id="10_3qkid"]
 [ext_resource type="PackedScene" uid="uid://j2k8j6cbrd1e" path="res://Tank/base_area_2d.tscn" id="10_vunxh"]
 [ext_resource type="AudioStream" uid="uid://bl3duvssvbbk8" path="res://sound/steelhit.ogg" id="11_1goxe"]
 [ext_resource type="PackedScene" uid="uid://cqau4tw7jbyoc" path="res://MobTank/mob_tank_main.tscn" id="13_0k428"]
@@ -69,9 +69,6 @@ shape = SubResource("RectangleShape2D_pobmt")
 position = Vector2(480, 880)
 shape = SubResource("RectangleShape2D_pobmt")
 
-[node name="BaseArea2D" parent="WallArea2D" instance=ExtResource("10_vunxh")]
-position = Vector2(480, 832)
-
 [node name="AudioSteelhit" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("11_1goxe")
 volume_db = 10.0
@@ -90,6 +87,9 @@ one_shot = true
 
 [node name="IronBrickTimer" type="Timer" parent="."]
 wait_time = 0.3
+
+[node name="Base" parent="." instance=ExtResource("10_vunxh")]
+position = Vector2(480, 832)
 
 [connection signal="area_entered" from="WallArea2D" to="." method="_on_wall_area_2d_area_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

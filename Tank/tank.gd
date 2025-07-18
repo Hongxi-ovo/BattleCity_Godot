@@ -10,6 +10,8 @@ extends CharacterBody2D
 
 # 当前场上自己最多可以存在的子弹数量
 var max_bullets = 1
+# 当前自己最多能发射的子弹数量
+var BulletsMun = 1
 # 控制子弹的移动方向
 var bullet_direction = 1
 # 锁定当前的移动状态
@@ -52,10 +54,10 @@ func TankInit(Player: int = 0, TankLevel: int = 0):
 	$Shield/ShieldAnimationPlayer.play("shield")
 	$AnimationPlayer.play("up")
 	$Sprite2D.region_rect = Rect2(0, 128 * Player + TankLevel * 16, 128, 16)
-	if TankLevelNum >= 2:
-		max_bullets = 2
+	if TankLevelNum >= 2 and max_bullets < 2 :
+		max_bullets += 1
 	else:
-		max_bullets = 1
+		max_bullets += 0
 	if PlayerNum == 0:
 		PlayersBullet = 1
 		$TankArea2D.collision_layer += 128 # 1p所在物理层
@@ -68,27 +70,30 @@ func TankInit(Player: int = 0, TankLevel: int = 0):
 		$Shield.collision_layer += 512 # 2p保护层
 # 坦克升级之类的部分
 func getTankLevel(Player):
-	print("打印了，PlayerNum是" + str(PlayerNum))
 	TankLevelNum = get_parent().getTankLevel(Player)
 	TankInitLevel(PlayerNum, TankLevelNum)
 
 
 func TankInitLevel(Player: int = 0, TankLevel: int = 0):
 	$Sprite2D.region_rect = Rect2(0, 128 * Player + TankLevel * 16, 128, 16)
-	if TankLevelNum >= 2:
-		max_bullets = 2
+	if TankLevelNum >= 2 and max_bullets < 2 :
+		max_bullets += 1
 	else:
-		max_bullets = 1
+		max_bullets += 0
 func tankShield():
 	$Shield/ShieldSprite2D.visible = true
-	$TankArea2D/CollisionShape2D.disabled = true
-	$Shield/CollisionShape2D.disabled = false
+	#$TankArea2D/CollisionShape2D.set_deferred("disabled", true)
+	$Shield/CollisionShape2D.set_deferred("disabled", false)
 	$Shield/ShieldTimer.wait_time = 10
 	$Shield/ShieldTimer.start()
 
 # 控制坦克移动部分
 func control_movement(_delta):
+	if get_parent().get_parent().isOver == true:
+		return
 	if Input.is_action_just_pressed("a" + str(PlayerNum + 1)) and max_bullets > 0:
+		if max_bullets > 2:
+			max_bullets = 2
 		max_bullets -= 1
 		parent.createBullet(PlayerNum, bullet_direction, global_position,TankLevelNum)
 		$AudioShoot.play()
@@ -132,24 +137,26 @@ func control_movement(_delta):
 # 无敌时间结束后，释放Shield节点
 func _on_shield_timer_timeout() -> void:
 	$Shield/ShieldSprite2D.visible = false
-	$Shield/CollisionShape2D.disabled = true
-	$TankArea2D/CollisionShape2D.disabled = false
+	#$TankArea2D/CollisionShape2D.set_deferred("disabled", false)
+	$Shield/CollisionShape2D.set_deferred("disabled", true)
 
 # 判断当前碰撞到的子弹是否为己方，是的话，则定住坦克一段时间
-
 func _on_tank_area_2d_area_entered(area: Area2D) -> void:
-	print("碰撞到了" + area.custom_class_name)
-	if area.custom_class_name == "Bullet":
+	if area.custom_class_name == "Bullet" and $Shield/CollisionShape2D.disabled == true:
 		MOVEMAIN = 5
 		move = MOVEMAIN
 		$RigidityTimer.start()
 		$FlickerTimer.start()
 	# 若是敌方子弹，则发生爆炸
-	elif area.custom_class_name == 'MobBullet':
-		MOVEMAIN = 5
-		move = MOVEMAIN
-		parent.tankExplotionScene(global_position,PlayerNum)
-		queue_free()
+	elif area.custom_class_name == 'MobBullet' and $Shield/CollisionShape2D.disabled == true:
+		if TankLevelNum <= 2:
+			MOVEMAIN = 5
+			move = MOVEMAIN
+			parent.tankExplotionScene(global_position,PlayerNum)
+			queue_free()
+		else:
+			get_parent().get_parent().setTankLevel(2,PlayerNum + 1)
+			$AudioHit.play()
 # 当时间到了以后才可移动
 func _on_rigidity_timer_timeout() -> void:
 	MOVEMAIN = 0

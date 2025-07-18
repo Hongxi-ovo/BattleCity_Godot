@@ -17,7 +17,7 @@ var SelectLevel: int = 1
 # 单人模式还是双人模式
 var isTowPlayerModel: bool = false
 # 1P和2P的生命数量
-@export var PlayerLife: Vector2 = Vector2(3, 3)
+@export var PlayerLife: Vector2i = Vector2i(0, 0)
 # 1P和2P的坦克等级
 @export var TankLevel: Vector2 = Vector2(0, 0)
 # 当前分数、玩家最高分数
@@ -32,6 +32,7 @@ var SaveMap = [0]
 # 加载地图场景
 var MapMain
 var ScoreMain
+var isTestModel = false
 
 var tank_array = [[0,0,0,0],[0,0,0,0]]
 
@@ -40,6 +41,41 @@ signal loadOk
 func _ready() -> void:
 	Change = SceneChange.instantiate()
 	StartScene() 
+func _process(_delta: float) -> void:
+	$RichTextLabel.text = "FPS:" + str(int(Performance.get_monitor(Performance.TIME_FPS)))
+	if Input.is_action_just_pressed("Show FPS"):
+		$RichTextLabel.visible = !$RichTextLabel.visible
+	
+	if Input.is_action_just_pressed("reload"):
+		Change = SceneChange.instantiate()
+		IsCONTRUCTION = false
+		SaveMap = [0]
+		for child in get_children():
+			if str(child.name) != "Camera2D" and str(child.name) != "ColorRect" and str(child.name) != "RichTextLabel" and str(child.name) != "TestModel":
+				child.queue_free()
+		if playingScore.x >= playingScore.y:
+			score.x = playingScore.x
+		else:
+			score.y = playingScore.y
+		if score.x >= score.y:
+			score.y = score.x
+		PlayerLife = Vector2(3,3)
+		TankLevel = Vector2(0,0)
+		playingScore = Vector2(0,0)
+		SelectLevel = 1
+		isTowPlayerModel = false
+		isTestModel = false
+		$TestModel.visible = false
+		$TestModel/Test.visible = false
+		$TestModel/Timer.stop()
+		StartScene()
+		Change.queue_free()
+func testModel():
+	$TestModel.visible = true
+	isTestModel = true
+	$TestModel/AudioStreamPlayer2.play()
+	$TestModel/Timer.start()
+	
 
 # 开始场景 即标题页面的内容 等标题内容结束之后进入切换场景页面
 func StartScene():
@@ -76,7 +112,6 @@ func sceneChange(Num: int, Scene):
 # 游戏场景 根据Num的值来加载1P和2P
 func GameScene():
 	MapMain = mapMain.instantiate()
-	print("当前关卡" + str(SelectLevel))
 	if isTowPlayerModel:
 		MapMain.PlayerNums = 2
 	else:
@@ -98,7 +133,7 @@ func changeSceneSignal():
 	emit_signal("loadOk")
 
 # 计分场景
-func ScoreScene():
+func ScoreScene(isOver):
 	ScoreMain = Score.instantiate()
 	ScoreMain.tank_array = tank_array
 	ScoreMain.playerScore = playingScore
@@ -107,8 +142,26 @@ func ScoreScene():
 	ScoreMain.is_two_player_mode = isTowPlayerModel
 	add_child(ScoreMain)
 	await  ScoreMain.scoreSuccess
-	SelectLevel += 1
-	MapMain.mapFree()
-	Change.SelectLevel = SelectLevel
-	Change.changeStage(ScoreMain)
+	if isOver:
+		MapMain.mapFree()
+		if playingScore.x >= playingScore.y:
+			score.x = playingScore.x
+		else:
+			score.y = playingScore.y
+		if score.x >= score.y:
+			score.y = score.x
+		TankLevel = Vector2(0,0)
+		playingScore = Vector2(0,0)
+		SelectLevel = 1
+		isTowPlayerModel = false
+		StartScene()
+		ScoreMain.queue_free()
+		Change.queue_free()
+	else:
+		SelectLevel += 1
+		MapMain.mapFree()
+		Change.SelectLevel = SelectLevel
+		Change.changeStage(ScoreMain)
 	
+func _on_timer_timeout() -> void:
+	$TestModel/Test.visible = !$TestModel/Test.visible

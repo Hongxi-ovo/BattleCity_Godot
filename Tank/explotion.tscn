@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://c8fokg0yxgmhc"]
 
-[ext_resource type="Script" path="res://Tank/explotion.gd" id="1_2lcw1"]
+[ext_resource type="Script" uid="uid://dcexqp4s3ei8i" path="res://Tank/explotion.gd" id="1_2lcw1"]
 [ext_resource type="Texture2D" uid="uid://dud1j7e1fkkvm" path="res://Resource/bc_0.png" id="1_df0qr"]
 
 [sub_resource type="Animation" id="Animation_uckmv"]
@@ -162,9 +162,9 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_qweix"]
 _data = {
-"Expansion_big": SubResource("Animation_uckmv"),
-"Explosion_small": SubResource("Animation_2djwc"),
-"RESET": SubResource("Animation_l66gf")
+&"Expansion_big": SubResource("Animation_uckmv"),
+&"Explosion_small": SubResource("Animation_2djwc"),
+&"RESET": SubResource("Animation_l66gf")
 }
 
 [node name="Explotion" type="Node2D"]
@@ -182,7 +182,7 @@ region_rect = Rect2(160, 256, 96, 32)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_qweix")
+&"": SubResource("AnimationLibrary_qweix")
 }
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

@@ -4,6 +4,9 @@ var Change: bool = false
 var isSelect:bool = false
 var SelectNums: int = 0
 var SelectLevel: int = 1
+
+
+
 signal ChangeSuccess
 
 # Called when the node enters the scene tree for the first time.
@@ -21,7 +24,10 @@ func _process(_delta: float) -> void:
 		$AudioStreamPlayer.play()
 		$Timer.start()
 		isSelect = false
+	
 	$StageNum.text = str(SelectLevel)
+
+
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if (SelectNums == 0 or SelectNums == 1) and anim_name == "moveDown":

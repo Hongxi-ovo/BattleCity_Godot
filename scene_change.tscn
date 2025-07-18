@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://caemkjtipmro4"]
 
-[ext_resource type="Script" path="res://scene_change.gd" id="1_daubm"]
+[ext_resource type="Script" uid="uid://2fg4fo3ulyca" path="res://scene_change.gd" id="1_daubm"]
 [ext_resource type="Texture2D" uid="uid://ibqxvke3ce42" path="res://Battle City (Japan)-0.png" id="2_xyncu"]
 [ext_resource type="FontFile" uid="uid://bot5a5dcxci6n" path="res://fonts/PressStart2P-Regular.ttf" id="3_c7pyx"]
 [ext_resource type="AudioStream" uid="uid://b7hynhkaiynf6" path="res://sound/levelstarting.ogg" id="4_a5by8"]
@@ -92,9 +92,9 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_hxjdk"]
 _data = {
-"RESET": SubResource("Animation_uk5wp"),
-"moveDown": SubResource("Animation_m5aww"),
-"moveUp": SubResource("Animation_yvxxw")
+&"RESET": SubResource("Animation_uk5wp"),
+&"moveDown": SubResource("Animation_m5aww"),
+&"moveUp": SubResource("Animation_yvxxw")
 }
 
 [node name="SceneChange" type="Node2D"]
@@ -115,7 +115,7 @@ color = Color(0.388235, 0.388235, 0.388235, 1)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_hxjdk")
+&"": SubResource("AnimationLibrary_hxjdk")
 }
 
 [node name="BattleCity(japan)-0" type="Sprite2D" parent="."]

@@ -205,7 +205,7 @@ func _on_tank_area_2d_area_entered(area: Area2D) -> void:
 			isRedTank -= 1
 			if isRedTank == 0:
 				$Timer.stop()
-			parent.addProp()
+			parent.addProp(-1)
 		if TankColor > 0:
 			TankColor -= 1
 			$Timer2.stop()

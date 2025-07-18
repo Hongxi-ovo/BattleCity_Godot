@@ -1,7 +1,7 @@
 extends Node2D
-var score:int = 100
+var score:int = 1
 func _ready() -> void:
-	$RichTextLabel.text = str(score)
-
+	$Sprite2D.frame = score
+	
 func _on_timer_timeout() -> void:
 	queue_free()

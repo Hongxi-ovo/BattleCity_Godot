@@ -30,12 +30,16 @@ var MobTankArray = {}
 var MobTankIsDead = {}
 
 var isRun: bool = true
+var isSwitch1: bool = false
+var isSwitch2: bool = false
+var bornProp: bool = false
 
 func _ready() -> void:
 	for i in range(0, MobTankNums):
 		MobTankIsDead[i] = false
 	TankArr = loadFileTank()
-
+func _process(_delta: float) -> void:
+	testModel()
 
 # 敌方坦克初始化
 func mobTankBornInit():
@@ -71,8 +75,8 @@ func mobTankBornInit():
 		MobTankNumsNow -= 1
 func loadFileTank():
 	var config = ConfigFile.new()
-	var fileName = str(get_parent().MapLevel) + ".tank"
-	var filePath = config.load("res://MobTank//Level//" + fileName)
+	var fileName = str((get_parent().MapLevel - 1)% 35 + 1) + ".tank"
+	var filePath = config.load("res://Map//Level//" + fileName)
 	if filePath != OK:
 		print("加载出错")
 		return 0
@@ -100,14 +104,16 @@ func tankExplotionScene(BulletPosition, TankLevelNum , BulletPlayer):
 		pass
 	else :
 		var addScore = ScoreScene.instantiate()
-		addScore.score = 100 * (TankLevelNum + 1)
+		addScore.score = TankLevelNum + 1
 		addScore.position = BulletPosition
 		get_parent().addScore(TankLevelNum + 1, BulletPlayer)
 		add_child(addScore)
 
-func addProp():
+func addProp(num):
 	var createProp = PropScene.instantiate()
-	# 为避免报错 改用call_deferred创建子节点
+	if num != -1:
+		createProp.value = num
+		# 为避免报错 改用call_deferred创建子节点
 	call_deferred("add_child", createProp)
 
 func createBullet(PlayersNum, bulletDirection, gPosition, level):
@@ -130,14 +136,97 @@ func deadMobTank(PlayerNum):
 	MobTankNums -= 1
 	print(MobTankNums)
 	if MobTankNumsNow == 0 and MobTankNowNums == 0 and MobTankNums <= 0:
-		get_parent().stopAudio()
+		get_parent().stopAudio(1)
+ 
+func testModel():
+	if get_parent().get_parent().isTestModel == true:
+		if Input.is_action_pressed("1prop1") and isSwitch1 == false and isSwitch2 == false:
+			$propTest.play()
+			$PropTimeTest.start()
+			isSwitch1 = true
+		if Input.is_action_pressed("1prop2") and isSwitch2 == false and isSwitch1 == false:
+			$propTest.play()
+			$PropTimeTest.start()
+			isSwitch2 = true	
+		if Input.is_action_pressed("2prop1") and bornProp == false:
+			$propTest.play()
+			$PropTimeTest.start()
+			bornProp = true
+		if Input.is_action_just_pressed("1") and isSwitch1 == true:
+			prop(0,0)
+			isSwitch1 = false
+		if Input.is_action_just_pressed("2") and isSwitch1 == true:
+			prop(1,0)
+			isSwitch1 = false
+		if Input.is_action_just_pressed("3") and isSwitch1 == true:
+			prop(2,0)
+			isSwitch1 = false
+		if Input.is_action_just_pressed("4") and isSwitch1 == true:
+			prop(3,0)
+			isSwitch1 = false
+		if Input.is_action_just_pressed("5") and isSwitch1 == true:
+			prop(4,0)
+			isSwitch1 = false
+		if Input.is_action_just_pressed("6") and isSwitch1 == true:
+			prop(5,0)
+			isSwitch1 = false
+		if Input.is_action_just_pressed("7") and isSwitch1 == true:
+			prop(6,0)
+			isSwitch1 = false
 
+		if Input.is_action_just_pressed("1") and isSwitch2 == true:
+			prop(0,1)
+			isSwitch2 = false
+		if Input.is_action_just_pressed("2") and isSwitch2 == true:
+			prop(1,1)
+			isSwitch2 = false
+		if Input.is_action_just_pressed("3") and isSwitch2 == true:
+			prop(2,1)
+			isSwitch2 = false
+		if Input.is_action_just_pressed("4") and isSwitch2 == true:
+			prop(3,1)
+			isSwitch2 = false
+		if Input.is_action_just_pressed("5") and isSwitch2 == true:
+			prop(4,1)
+			isSwitch2 = false
+		if Input.is_action_just_pressed("6") and isSwitch2 == true:
+			prop(5,1)
+			isSwitch2 = false
+		if Input.is_action_just_pressed("7") and isSwitch2 == true:
+			prop(6,1)
+			isSwitch2 = false	
+
+		if Input.is_action_just_pressed("1") and bornProp == true:
+			addProp(0)
+			bornProp = false
+		if Input.is_action_just_pressed("2") and bornProp == true:
+			addProp(1)
+			bornProp = false
+		if Input.is_action_just_pressed("3") and bornProp == true:
+			addProp(2)
+			bornProp = false
+		if Input.is_action_just_pressed("4") and bornProp == true:
+			addProp(3)
+			bornProp = false
+		if Input.is_action_just_pressed("5") and bornProp == true:
+			addProp(4)
+			bornProp = false
+		if Input.is_action_just_pressed("6") and bornProp == true:
+			addProp(5)
+			bornProp = false
+		if Input.is_action_just_pressed("7") and bornProp == true:
+			addProp(6)
+			bornProp = false
+		
 func eatProp(propPosition,PlayerNum,propNum):
 	var addScore = ScoreScene.instantiate()
-	addScore.score = 500
+	addScore.score = 5
 	addScore.position = propPosition
 	get_parent().addPropScore(5, PlayerNum + 1)
 	add_child(addScore)
+	prop(propNum, PlayerNum)
+
+func prop(propNum: int, PlayerNum: int) -> void:
 	if propNum != 5:
 		$eatProp.play()
 		# 无敌
@@ -150,7 +239,7 @@ func eatProp(propPosition,PlayerNum,propNum):
 		# 铲子
 		elif propNum == 2:
 			get_parent().shovelProp()
-		# 星星
+		# 星星 加1级
 		elif propNum == 3:
 			get_parent().setTankLevel(get_parent().getTankLevel(PlayerNum + 1) + 1,PlayerNum + 1)
 		# 炸弹
@@ -175,3 +264,8 @@ func exposition():
 	else :
 		exNum = 0
 		isExplotion = false
+
+
+func _on_prop_time_test_timeout() -> void:
+	isSwitch1 = false
+	isSwitch2 = false

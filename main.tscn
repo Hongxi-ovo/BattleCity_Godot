@@ -1,11 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3t68d804udcq"]
+[gd_scene load_steps=9 format=3 uid="uid://d3t68d804udcq"]
 
-[ext_resource type="Script" path="res://main.gd" id="1_3dw1d"]
+[ext_resource type="Script" uid="uid://bnuiiw01t2ki8" path="res://main.gd" id="1_3dw1d"]
 [ext_resource type="PackedScene" uid="uid://cru0m7ji4l6f" path="res://Title/title.tscn" id="1_5to4x"]
 [ext_resource type="PackedScene" uid="uid://caemkjtipmro4" path="res://scene_change.tscn" id="3_pxm1y"]
 [ext_resource type="PackedScene" uid="uid://b68q4kexlh87q" path="res://Map/map_save.tscn" id="3_sotkt"]
 [ext_resource type="PackedScene" uid="uid://cn17c0albqdex" path="res://Map/map.tscn" id="4_hxg16"]
 [ext_resource type="PackedScene" uid="uid://d0wiya4dycq0e" path="res://score_count.tscn" id="6_rol3k"]
+[ext_resource type="FontFile" path="res://fonts/press_start_2p.tres" id="7_272bh"]
+[ext_resource type="AudioStream" uid="uid://b1bqyqn3tdfby" path="res://sound/award.ogg" id="8_5vw27"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_3dw1d")
@@ -23,3 +25,36 @@ z_index = -999
 offset_right = 1024.0
 offset_bottom = 896.0
 color = Color(0, 0, 0, 1)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+visible = false
+z_index = 4096
+offset_left = 784.0
+offset_top = 16.0
+offset_right = 1024.0
+offset_bottom = 64.0
+theme_override_fonts/normal_font = ExtResource("7_272bh")
+theme_override_font_sizes/normal_font_size = 32
+text = "FPS:"
+
+[node name="TestModel" type="Node2D" parent="."]
+visible = false
+
+[node name="Test" type="RichTextLabel" parent="TestModel"]
+modulate = Color(0.607843, 0, 1, 1)
+z_index = 4096
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 264.0
+offset_bottom = 64.0
+theme_override_fonts/normal_font = ExtResource("7_272bh")
+theme_override_font_sizes/normal_font_size = 32
+text = "TEST!"
+
+[node name="Timer" type="Timer" parent="TestModel"]
+wait_time = 0.5
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="TestModel"]
+stream = ExtResource("8_5vw27")
+
+[connection signal="timeout" from="TestModel/Timer" to="." method="_on_timer_timeout"]

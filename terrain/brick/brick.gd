@@ -42,14 +42,15 @@ func buildXY():
 		return
 
 func _on_area_entered(area: Area2D) -> void:
-	if area.custom_class_name == "Bullet":
+	if area.custom_class_name == "TerrainBullet":
 		get_parent().AudioBrickhit()
-		if area.BulletType > 2:
+		if area.get_parent().BulletType > 2:
+			print(area.get_parent().BulletType)
 			get_parent().freeMain(NumbrickPosition)
 		else:
 			queue_free()
-	elif area.custom_class_name == "MobBullet":
-		if area.BulletType > 2:
+	elif area.custom_class_name == "MobTerrainBullet":
+		if area.get_parent().BulletType > 2:
 			get_parent().freeMain(NumbrickPosition)
 		else:
 			queue_free()

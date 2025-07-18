@@ -8,6 +8,8 @@ var Selects: int = 0
 # 信号
 signal TitleStop
 
+var testNum = 0
+
 # 判断当前标题是否在移动 true为默认在移动的
 var titleMove: bool = true
 # 在循环之前执行的内容
@@ -28,6 +30,7 @@ func _process(delta: float) -> void:
 		return
 	if titleMove == false:
 		TitleMoved()
+
 		return
 # 标题移动
 func TitleMoveing(delta):
@@ -48,7 +51,62 @@ func TitleMoved():
 		Menus(Selects)
 		# 一个逐渐过渡到黑暗的动画
 		$BlackAniamtion.play("blacking")
-		
+	switchTestModel()
+
+func switchTestModel():
+	if Input.is_action_just_pressed("up1") and testNum < 2 and testNum >= 0:
+		testNum += 1
+		return
+	elif Input.is_action_just_pressed("down1") and testNum < 4 and testNum >= 2:
+		testNum += 1
+		return
+	elif Input.is_action_just_pressed("left1") and testNum == 4:
+		testNum += 1
+		return
+	elif Input.is_action_just_pressed("right1") and testNum == 5:
+		testNum += 1
+		return
+	elif Input.is_action_just_pressed("left1") and testNum == 6:
+		testNum += 1
+		return
+	elif Input.is_action_just_pressed("right1") and testNum == 7:
+		testNum += 1
+		return
+	elif Input.is_action_just_pressed("b1") and testNum == 8:
+		testNum += 1
+		return
+	elif Input.is_action_just_pressed("a1") and testNum == 9:
+		testNum += 1
+		return
+	if Input.is_action_just_pressed("up1") and !(testNum < 2 and testNum >= 0):
+		testNum = 0
+		return
+	elif Input.is_action_just_pressed("down1") and !(testNum < 4 and testNum >= 2):
+		testNum = 0
+		return
+	elif Input.is_action_just_pressed("left1") and !(testNum == 4):
+		testNum = 0
+		return
+	elif Input.is_action_just_pressed("right1") and !(testNum == 5):
+		testNum = 0
+		return
+	elif Input.is_action_just_pressed("left1") and !(testNum == 6):
+		testNum = 0
+		return
+	elif Input.is_action_just_pressed("right1") and !(testNum == 7):
+		testNum = 0
+		return
+	elif Input.is_action_just_pressed("b1") and !(testNum == 8):
+		testNum = 0
+		return
+	elif Input.is_action_just_pressed("a1") and !(testNum == 9):
+		testNum = 0
+		return
+	if testNum == 10 and get_parent().isTestModel == false:
+		get_parent().testModel()
+		testNum = 0
+
+
 # 根据Value的值 来执行下面的内容
 func Menus(Value):
 	# 获取父节点
@@ -56,10 +114,12 @@ func Menus(Value):
 	# 将0传入父节点的GamePlayerNum
 	if Value == 0:
 		if parent_GamePlayerNum:
+			get_parent().PlayerLife = Vector2(3,0)
 			parent_GamePlayerNum.GamePlayerNum = 0
 	# 将1传入父节点的GamePlayerNum
 	if Value == 1:
 		if parent_GamePlayerNum:
+			get_parent().PlayerLife = Vector2(3,3)
 			parent_GamePlayerNum.GamePlayerNum = 1
 	# 将2传入父节点的GamePlayerNum
 	if Value == 2:

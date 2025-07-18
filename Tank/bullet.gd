@@ -32,7 +32,7 @@ func initBulletLevel(BLevel):
 	if BLevel == 0:
 		return
 	if BLevel >= 1:
-		SPEED += 200
+		SPEED += 400
 		return
 
 
@@ -53,17 +53,15 @@ func update_position(direction: int, delta: float) -> void:
 			position.x += SPEED * delta
 
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
-	print(str(this_1p_or_2pBullet) + "消失了")
 	get_parent().fillBullet(this_1p_or_2pBullet)
 	queue_free()
 
 
 func _on_area_entered(area: Area2D) -> void:
-	if !Explosioning:
+	if !Explosioning and area.custom_class_name != "TerrainBullet" and area.custom_class_name != "MobTerrainBullet":
 		Explosioning = true
 		if area.custom_class_name != "Bullet" and area.custom_class_name != "Shield" and area.custom_class_name != "MobBullet":
 			get_parent().explotionScene(position)
-
 		SPEED = 0
 		get_parent().fillBullet(this_1p_or_2pBullet)
 		queue_free()

@@ -55,7 +55,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()
 
 func _on_area_entered(area: Area2D) -> void:
-	if !Explosioning:
+	if !Explosioning and area.custom_class_name != "MobTerrainBullet" and area.custom_class_name != "TerrainBullet":
 		Explosioning = true
 		if area.custom_class_name != "Bullet" and area.custom_class_name != "Shield" :
 			get_parent().explotionScene(position)

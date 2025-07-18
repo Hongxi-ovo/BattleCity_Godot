@@ -7,10 +7,8 @@ extends Node2D
 @export var bullet: PackedScene
 # 实例化born场景
 @export var born: PackedScene
-
 # 定义当前是1p模式还是2p模式
 @export var Player: int = 0
-
 # 定义当前最大子弹数量
 @export var MaxButtet: Vector2 = Vector2(1, 1)
 # 定义1p和2p
@@ -66,10 +64,11 @@ func tankBorn(PlayersNum: int):
 # 创建玩家的子弹
 func createBullet(PlayersNum, bulletDirection, gPosition , TankLevelNum):
 	var createScene = bullet.instantiate()
+	createScene.BulletType = TankLevelNum
 	createScene.bullet_direction = bulletDirection
 	createScene.this_1p_or_2pBullet = PlayersNum + 1
 	createScene.position = gPosition
-	createScene.BulletType = TankLevelNum
+
 	if PlayersNum == 0:
 		createScene.collision_layer += 16
 		createScene.collision_mask += 64 + 512
@@ -81,7 +80,7 @@ func createBullet(PlayersNum, bulletDirection, gPosition , TankLevelNum):
 func fillBullet(PlayerNum):
 	if PlayerNum == 1 and Player1 != null:
 		Player1.max_bullets += 1
-	if PlayerNum == 2 and Player1 != null:
+	if PlayerNum == 2 and Player2 != null:
 		Player2.max_bullets += 1
 # 爆炸场景
 func explotionScene(BulletPosition):
@@ -94,13 +93,17 @@ func tankExplotionScene(BulletPosition,PlayerNum):
 	createExplotion.Type = 1
 	createExplotion.position = BulletPosition
 	add_child(createExplotion)
+	get_parent().setPlayLife(get_parent().getPlayLife(PlayerNum + 1) - 1,PlayerNum + 1)
 	if PlayerNum == 0:
 		Player1.queue_free()
+		get_parent().setTankLevel(0,1)
 		$"1PTimer".start()
 	elif PlayerNum == 1:
 		Player2.queue_free()
+		get_parent().setTankLevel(0,2)
 		$"2PTimer".start()
 	$Audio.play()
+	isGameOver()
 
 func AudioPlay1(num):
 	if MobHave == false:
@@ -129,13 +132,15 @@ func TankMainFree():
 	queue_free()
 
 func _on_1p_timer_timeout() -> void:
-	if get_parent().getPlayLife(1) > 1:
-		get_parent().setPlayLife(get_parent().getPlayLife(1) - 1,1)
+	if get_parent().getPlayLife(1) > 0:
 		tankBorn(1)
+	else:
+		get_parent().GameOver(1)
 func _on_2p_timer_timeout() -> void:
-	if get_parent().getPlayLife(2) > 1:
-		get_parent().setPlayLife(get_parent().getPlayLife(2) - 1,2)
+	if get_parent().getPlayLife(2) > 0:
 		tankBorn(2)
+	else:
+		get_parent().GameOver(2)
 func tankPause():
 	get_parent().Pause()
 
@@ -151,3 +156,7 @@ func tankShield(PlayerNum):
 		Player1.tankShield()
 	elif PlayerNum == 2:
 		Player2.tankShield()
+
+func isGameOver():
+	if get_parent().getPlayLife(1) < 1 and get_parent().getPlayLife(2) < 1:
+		get_parent().stopAudio(3)

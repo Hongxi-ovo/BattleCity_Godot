@@ -15,8 +15,6 @@ tank = ExtResource("2_hgyg3")
 explotion = ExtResource("3_8nmc7")
 bullet = ExtResource("4_vhfk1")
 born = ExtResource("5_hsmyi")
-Player = null
-MaxButtet = null
 
 [node name="AudioTankMove1" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_e8iys")

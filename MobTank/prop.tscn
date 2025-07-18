@@ -1,13 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://q4rynsmk37ak"]
 
 [ext_resource type="Texture2D" uid="uid://dud1j7e1fkkvm" path="res://Resource/bc_0.png" id="1_bopm3"]
-[ext_resource type="Script" path="res://MobTank/prop.gd" id="1_y6enb"]
+[ext_resource type="Script" uid="uid://c84kkuwgriobc" path="res://MobTank/prop.gd" id="1_y6enb"]
 [ext_resource type="AudioStream" uid="uid://c8goj232bnoim" path="res://sound/tbonushit.ogg" id="3_gir2r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qvvfm"]
 size = Vector2(64, 64)
 
 [node name="prop" type="Area2D"]
+z_index = 10
 collision_layer = 0
 collision_mask = 192
 script = ExtResource("1_y6enb")

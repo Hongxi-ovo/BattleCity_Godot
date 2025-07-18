@@ -13,7 +13,6 @@ func _ready() -> void:
 	$Sprite2D2.visible = false
 	$Sprite2D3.visible = false
 	$Sprite2D4.visible = false
-	pass # Replace with function body.
 
 
 func build(Num: int = 0):
@@ -52,7 +51,6 @@ func buildmax(num: int):
 
 func freeMain(num):
 	for i in 4:
-		#print(brickExample[num][i])
 		if brickExample[num][i] != null:
 			brickExample[num][i].allDelete()
 

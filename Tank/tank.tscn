@@ -1,12 +1,13 @@
-[gd_scene load_steps=22 format=3 uid="uid://culixhqbfyowp"]
+[gd_scene load_steps=23 format=3 uid="uid://culixhqbfyowp"]
 
 [ext_resource type="Texture2D" uid="uid://dud1j7e1fkkvm" path="res://Resource/bc_0.png" id="1_4nj6y"]
-[ext_resource type="Script" path="res://Tank/tank.gd" id="1_rpsag"]
+[ext_resource type="Script" uid="uid://d0yx7hq5gdv0v" path="res://Tank/tank.gd" id="1_rpsag"]
 [ext_resource type="PackedScene" uid="uid://c8fokg0yxgmhc" path="res://Tank/explotion.tscn" id="3_0hrsi"]
-[ext_resource type="Script" path="res://Tank/tank_area_2d.gd" id="4_7hbh6"]
+[ext_resource type="Script" uid="uid://bbohk3pxn45ja" path="res://Tank/tank_area_2d.gd" id="4_7hbh6"]
 [ext_resource type="AudioStream" uid="uid://dhdy56wk3mcvp" path="res://sound/shoot.ogg" id="4_hk8tj"]
-[ext_resource type="Script" path="res://Tank/shield.gd" id="4_p2xte"]
+[ext_resource type="Script" uid="uid://bidfc50cxfafj" path="res://Tank/shield.gd" id="4_p2xte"]
 [ext_resource type="AudioStream" uid="uid://dv8figm3sdx5b" path="res://sound/ice.ogg" id="5_1cq60"]
+[ext_resource type="AudioStream" uid="uid://ccebk5r2ehg3o" path="res://sound/shieldhit.ogg" id="8_ju3hr"]
 
 [sub_resource type="Animation" id="Animation_1oq11"]
 length = 0.001
@@ -273,11 +274,11 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fi5gh"]
 _data = {
-"RESET": SubResource("Animation_1oq11"),
-"down": SubResource("Animation_3k7ce"),
-"left": SubResource("Animation_f6iin"),
-"right": SubResource("Animation_t5hup"),
-"up": SubResource("Animation_c06jl")
+&"RESET": SubResource("Animation_1oq11"),
+&"down": SubResource("Animation_3k7ce"),
+&"left": SubResource("Animation_f6iin"),
+&"right": SubResource("Animation_t5hup"),
+&"up": SubResource("Animation_c06jl")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k6lwu"]
@@ -389,8 +390,8 @@ tracks/3/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_epeee"]
 _data = {
-"RESET": SubResource("Animation_bw3p4"),
-"shield": SubResource("Animation_dkl0n")
+&"RESET": SubResource("Animation_bw3p4"),
+&"shield": SubResource("Animation_dkl0n")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bxe6u"]
@@ -407,7 +408,6 @@ size = Vector2(48, 15.9)
 
 [node name="Tank" type="CharacterBody2D"]
 physics_interpolation_mode = 2
-position = Vector2(-8, 0)
 disable_mode = 1
 motion_mode = 1
 safe_margin = 0.001
@@ -424,7 +424,7 @@ region_rect = Rect2(0, 0, 128, 16)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_fi5gh")
+&"": SubResource("AnimationLibrary_fi5gh")
 }
 
 [node name="TankArea2D" type="Area2D" parent="."]
@@ -434,7 +434,6 @@ script = ExtResource("4_7hbh6")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TankArea2D"]
 shape = SubResource("RectangleShape2D_k6lwu")
-disabled = true
 
 [node name="Shield" type="Area2D" parent="."]
 collision_layer = 0
@@ -456,7 +455,7 @@ region_rect = Rect2(96, 256, 32, 16)
 [node name="ShieldAnimationPlayer" type="AnimationPlayer" parent="Shield"]
 root_node = NodePath("../ShieldTimer")
 libraries = {
-"": SubResource("AnimationLibrary_epeee")
+&"": SubResource("AnimationLibrary_epeee")
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Shield"]
@@ -509,6 +508,9 @@ position = Vector2(-23.9, 0)
 rotation = -1.5708
 shape = SubResource("RectangleShape2D_km6ub")
 one_way_collision = true
+
+[node name="AudioHit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_ju3hr")
 
 [connection signal="area_entered" from="TankArea2D" to="." method="_on_tank_area_2d_area_entered"]
 [connection signal="timeout" from="Shield/ShieldTimer" to="." method="_on_shield_timer_timeout"]

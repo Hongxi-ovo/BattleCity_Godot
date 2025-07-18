@@ -25,6 +25,8 @@ var PlayerNums:int = 1
 var MapLevel:int = 1
 # 通过记录地图块的坐标来确定场景的生成
 var MapArr = []
+
+var isOver:bool = false
 # 循环前加载的内容
 func _ready() -> void:
 	# print($WallArea2D.custom_class_name)
@@ -37,6 +39,7 @@ func _ready() -> void:
 		MapArr.append(row)
 	MapLevel = get_parent().SelectLevel
 	UIScene = UI.instantiate()
+	UIScene.gameModel(PlayerNums == 2)
 	UIScene.StageInit(MapLevel)
 	UIScene.Tank1Life(getPlayLife(1))
 	UIScene.Tank2Life(getPlayLife(2))
@@ -58,7 +61,6 @@ func loadMapData(level: int):
 		return
 	# 读取内容
 	return (config.get_value("Level", "MapArr"))
-	
 	
 func Build(BuildNum):
 	for i in 13:
@@ -132,11 +134,20 @@ func addPropScore(num ,player):
 	elif player ==2:
 		get_parent().playingScore.y += num * 100
 		return
-func stopAudio():
-	TankBornS.MobHave = false
-	$Timer.start()
+func stopAudio(num):
+	if num == 1:
+		TankBornS.MobHave = false
+		$Timer.start()
+	elif num == 2:
+		TankBornS.MobHave = false
+		$Timer.start()
+	elif num == 3:
+		TankBornS.MobHave = false
+		isOver = true
+		UIScene.Over()
+		$Timer.start()
 func _on_timer_timeout() -> void:
-	get_parent().ScoreScene()
+	get_parent().ScoreScene(isOver)
 	TankBornS.TankMainFree()
 func mapFree():
 	queue_free()
@@ -168,6 +179,7 @@ func setTankLevel(num,player):
 		TankBornS.setTankLevel(player)
 	elif player == 2:
 		get_parent().TankLevel.y = num
+		TankBornS.setTankLevel(player)
 func Pause():
 	UIScene.pause()
 func tankShield(player):
@@ -211,3 +223,7 @@ func _on_iron_brick_timer_timeout() -> void:
 	else:
 		BuildIron()
 		isShovel = false
+
+func GameOver(playerNum):
+	UIScene.gameOver(playerNum)
+	

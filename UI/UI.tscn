@@ -1,14 +1,15 @@
 [gd_scene load_steps=8 format=3 uid="uid://voggpv86u6dm"]
 
-[ext_resource type="Script" path="res://UI/UI.gd" id="1_1it2a"]
+[ext_resource type="Script" uid="uid://1786xl62w30r" path="res://UI/UI.gd" id="1_1it2a"]
 [ext_resource type="Texture2D" uid="uid://0havvunhmy14" path="res://Resource/enemy.png" id="1_c7cnj"]
 [ext_resource type="Texture2D" uid="uid://vwejfxcg3xb5" path="res://Resource/flag.png" id="3_55upo"]
 [ext_resource type="FontFile" uid="uid://bot5a5dcxci6n" path="res://fonts/PressStart2P-Regular.ttf" id="4_5veif"]
 [ext_resource type="Texture2D" uid="uid://bordtsgdr3r56" path="res://Resource/lives.png" id="5_52pw4"]
-[ext_resource type="Script" path="res://UI/pause.gd" id="6_5gfdn"]
+[ext_resource type="Script" uid="uid://drqyhsjtv0r8x" path="res://UI/pause.gd" id="6_5gfdn"]
 [ext_resource type="AudioStream" uid="uid://c8a0y8ig4ihoh" path="res://sound/pause.ogg" id="7_4roaw"]
 
 [node name="UI" type="Node2D"]
+z_index = 11
 script = ExtResource("1_1it2a")
 
 [node name="Node2D" type="Node2D" parent="."]
@@ -132,6 +133,7 @@ text = "10"
 text_direction = 2
 
 [node name="1p" type="Node2D" parent="."]
+visible = false
 
 [node name="Lives" type="Sprite2D" parent="1p"]
 position = Vector2(944, 496)
@@ -167,9 +169,12 @@ offset_bottom = 512.0
 theme_override_fonts/normal_font = ExtResource("4_5veif")
 theme_override_font_sizes/normal_font_size = 32
 text = "0"
+scroll_active = false
+autowrap_mode = 0
 text_direction = 1
 
 [node name="2p" type="Node2D" parent="."]
+visible = false
 position = Vector2(0, 128)
 
 [node name="Lives" type="Sprite2D" parent="2p"]
@@ -206,6 +211,8 @@ offset_bottom = 512.0
 theme_override_fonts/normal_font = ExtResource("4_5veif")
 theme_override_font_sizes/normal_font_size = 32
 text = "0"
+scroll_active = false
+autowrap_mode = 0
 
 [node name="Pause" type="Node2D" parent="."]
 process_mode = 2
@@ -238,36 +245,40 @@ one_shot = true
 [node name="GameOver" type="Node2D" parent="."]
 
 [node name="1P" type="RichTextLabel" parent="GameOver"]
+visible = false
 modulate = Color(1, 0, 0, 1)
-z_index = 1
+z_index = 12
 z_as_relative = false
-offset_left = -128.0
+offset_left = 320.0
 offset_top = 768.0
+offset_right = 448.0
 offset_bottom = 832.0
 theme_override_fonts/normal_font = ExtResource("4_5veif")
 theme_override_font_sizes/normal_font_size = 32
 text = "GAMEOVER"
 
 [node name="2P" type="RichTextLabel" parent="GameOver"]
+visible = false
 modulate = Color(1, 0, 0, 1)
-z_index = 1
+z_index = 12
 z_as_relative = false
-offset_left = 896.0
+offset_left = 520.0
 offset_top = 768.0
-offset_right = 1024.0
+offset_right = 648.0
 offset_bottom = 832.0
 theme_override_fonts/normal_font = ExtResource("4_5veif")
 theme_override_font_sizes/normal_font_size = 32
 text = "GAMEOVER"
 
 [node name="Over" type="RichTextLabel" parent="GameOver"]
+visible = false
 modulate = Color(1, 0, 0, 1)
-z_index = 1
+z_index = 12
 z_as_relative = false
-offset_left = 360.0
-offset_top = 896.0
-offset_right = 616.0
-offset_bottom = 1024.0
+offset_left = 352.0
+offset_top = 320.0
+offset_right = 608.0
+offset_bottom = 448.0
 theme_override_fonts/normal_font = ExtResource("4_5veif")
 theme_override_font_sizes/normal_font_size = 64
 text = "GAMEOVER"

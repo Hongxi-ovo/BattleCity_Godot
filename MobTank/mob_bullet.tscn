@@ -1,10 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvfjb4dvrfpxp"]
+[gd_scene load_steps=4 format=3 uid="uid://cvfjb4dvrfpxp"]
 
 [ext_resource type="PackedScene" uid="uid://cslt7phyqmt33" path="res://Tank/bullet.tscn" id="1_8j0j8"]
-[ext_resource type="Script" path="res://MobTank/mob_bullet.gd" id="2_r6aqu"]
+[ext_resource type="Script" uid="uid://04iph4ygybnu" path="res://MobTank/mob_bullet.gd" id="2_r6aqu"]
+[ext_resource type="Script" uid="uid://bd4ltpx1vsjs2" path="res://MobTank/terrainBullet.gd" id="3_4eu7v"]
 
 [node name="MobBullet" instance=ExtResource("1_8j0j8")]
 collision_layer = 4097
 collision_mask = 961
 script = ExtResource("2_r6aqu")
 custom_class_name = "MobBullet"
+
+[node name="terrain" parent="." index="4"]
+script = ExtResource("3_4eu7v")
+custom_class_name = "MobTerrainBullet"

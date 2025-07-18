@@ -1,10 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://dcg7233m7kmg8"]
 
-[ext_resource type="Script" path="res://terrain/blocks.gd" id="1_vjtvd"]
+[ext_resource type="Script" uid="uid://cnhx51xf6hvao" path="res://terrain/blocks.gd" id="1_vjtvd"]
 [ext_resource type="Texture2D" uid="uid://tjeeqk4vog" path="res://Resource/bc_1.png" id="2_3vugu"]
 
 [node name="Blocks" type="Node2D"]
-position = Vector2(224, 224)
 script = ExtResource("1_vjtvd")
 metadata/_edit_group_ = true
 
